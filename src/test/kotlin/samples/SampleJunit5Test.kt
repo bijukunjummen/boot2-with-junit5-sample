@@ -1,6 +1,6 @@
 package samples
 
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,9 +24,8 @@ class SampleJunit5Test {
                 .expectStatus().isOk
                 .expectBody()
                 .consumeWith({ m ->
-                    assertThat(String(m.responseBodyContent, StandardCharsets.UTF_8)).isEqualTo("Hello World!")
+                    assertEquals("Hello World!", String(m.responseBodyContent!!, StandardCharsets.UTF_8))
                 })
-
     }
 
 }

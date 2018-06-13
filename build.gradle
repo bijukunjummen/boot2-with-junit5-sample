@@ -1,19 +1,19 @@
 buildscript {
-	ext {
-		kotlinVersion = '1.2.10'
-		springBootVersion = '2.0.0.M7'
-	}
-	repositories {
-		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
-	}
+    ext {
+        kotlinVersion = '1.2.41'
+        springBootVersion = '2.0.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
+    }
 }
 
 apply plugin: 'kotlin'
@@ -26,29 +26,36 @@ apply plugin: 'org.junit.platform.gradle.plugin'
 group = 'org.bk.samples'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
 compileKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
 }
 compileTestKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
 }
 
 repositories {
-	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-webflux')
-	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8")
-	compile("org.jetbrains.kotlin:kotlin-reflect")
-	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('io.projectreactor:reactor-test')
 
-	testCompile("org.junit.jupiter:junit-jupiter-api")
-	testRuntime("org.junit.jupiter:junit-jupiter-engine")
-	testRuntime("org.junit.vintage:junit-vintage-engine:4.12.2")
+    testCompile("org.junit.jupiter:junit-jupiter-api")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine")
+    testRuntime("org.junit.vintage:junit-vintage-engine")
 }

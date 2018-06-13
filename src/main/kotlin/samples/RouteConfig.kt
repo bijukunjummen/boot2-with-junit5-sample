@@ -11,7 +11,11 @@ class RouteConfig {
 
     @Bean
     fun routes() = router {
-        GET("/hello", { _ -> ServerResponse.ok().body(BodyInserters.fromObject("Hello World!")) })
+        GET("/hello", { _ ->
+            println("Hello ..called..")
+            ServerResponse.ok().body(BodyInserters.fromObject("Hello World!")) 
+        })
+        
     }
-    
+
 }

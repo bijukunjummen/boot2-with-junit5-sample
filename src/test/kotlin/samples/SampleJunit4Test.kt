@@ -24,7 +24,7 @@ class SampleJunit4Test {
                 .expectStatus().isOk
                 .expectBody()
                 .consumeWith({ m ->
-                    assertThat(String(m.responseBodyContent, StandardCharsets.UTF_8)).isEqualTo("Hello World!")
+                    assertThat(String(m.responseBodyContent!!, StandardCharsets.UTF_8)).isEqualTo("Hello World!")
                 })
 
     }
